@@ -3,20 +3,23 @@ import React from 'react';
 import { Image } from 'antd';
 import {getContributions, Props} from "../lib/contributions";
 import ActivityCalendar from "react-activity-calendar";
+import {getProjects} from "../lib/portfolio-projects";
 
 export async function getServerSideProps() {
-    const rawProps = await getContributions();
+    const props = await getContributions();
+    const rawProjects = await getProjects();
     return {
         props: {
-            name: rawProps.props.name,
-            bio: rawProps.props.bio,
-            contribution: rawProps.props.contribution,
-            htmlUrl: rawProps.props.htmlUrl
+            name: props.name,
+            bio: props.bio,
+            contribution: props.contribution,
+            htmlUrl: props.htmlUrl,
+            projects: rawProjects
         }
     }
 }
 export default function Home(props: Props) {
-    // console.log(props.htmlUrl)
+    // console.log(props.projects)
     return (
         <div className={styles.container}>
             <main className={styles.main}>
@@ -33,44 +36,22 @@ export default function Home(props: Props) {
                 <ActivityCalendar color="#0070f3" data={props.contribution} ></ActivityCalendar>
 
                 <p className={styles.description}>
-                    PLACEHOLDER{' '}
-                    <code className={styles.code}>projects:</code>
+                    <code className={styles.code}>My projects:</code>
                 </p>
-
-                <div className={styles.grid}>
-                    <a href="https://nextjs.org/docs" className={styles.card}>
-                        <h2>Documentation &rarr;</h2>
-                        <p>Find in-depth information about Next.js features and API.</p>
-                    </a>
-
-                    <a href="https://nextjs.org/learn" className={styles.card}>
-                        <h2>Learn &rarr;</h2>
-                        <p>Learn about Next.js in an interactive course with quizzes!</p>
-                    </a>
-
-                    <a
-                        href="https://github.com/vercel/next.js/tree/canary/examples"
-                        className={styles.card}
-                    >
-                        <h2>Examples &rarr;</h2>
-                        <p>Discover and deploy boilerplate example Next.js projects.</p>
-                    </a>
-
-                    <a
-                        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.card}
-                    >
-                        <h2>Deploy &rarr;</h2>
-                        <p>
-                            Instantly deploy your Next.js site to a public URL with Vercel.
-                        </p>
-                    </a>
-                </div>
-
+                {/*todo cards*/}
+                    <div className={styles.grid}>
+                        {props.projects.map(project => (
+                            <div className={styles.card}>
+                                <li>{project.name}</li>
+                                <span>{project.description}</span>
+                                <Image src={project.smallImage}/>
+                                <div>{project.badges.map(lang =>(
+                                    <li style={{color: lang.color}}>{lang.name}</li>
+                                ))}</div>
+                            </div>
+                        ))}
+                    </div>
             </main>
-
         </div>
     )
 }
