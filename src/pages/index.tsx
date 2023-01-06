@@ -1,6 +1,6 @@
 import styles from '../../styles/Home.module.css'
 import React from 'react';
-import {Image, Card, Button, Tag} from 'antd';
+import {Image, Button, Tag} from 'antd';
 import {getContributions, Props} from "../lib/contributions";
 import ActivityCalendar from "react-activity-calendar";
 import {getProjects} from "../lib/portfolio-projects";
@@ -44,10 +44,10 @@ export default function Home(props: Props) {
                     {props.projects.map((project, index) => (
                         <div key={index}  className={styles.card}>
                             <header className={styles.code}>{project.name}</header>
-                            <img src={project.smallImage} alt="null"/>
+                            <Image src={project.smallImage}/>
                             <span>{project.description}</span>
-                            <b className={styles.logo}>{project.badges.map(lang => (
-                                <Tag color={lang.color}>{lang.name}</Tag>
+                            <b className={styles.logo}>{project.badges.map((lang,index) => (
+                                <Tag key={index} color={lang.color}>{lang.name}</Tag>
                             ))}</b>
                             {/*todo insert onclick modular*/}
                             <Button ghost block type="primary" className={styles.button}>See more</Button>
@@ -55,7 +55,7 @@ export default function Home(props: Props) {
                     ))}
                 </div>
             </main>
-            <footer> <a className={styles.footer} target="_blank" href="https://www.linkedin.com/in/mihails-dudarevs/">Contact me</a></footer>
+            <footer> <a className={styles.footer} target="_blank" rel="noopener" href="https://www.linkedin.com/in/mihails-dudarevs/">Contact me</a></footer>
         </div>
     )
 }
