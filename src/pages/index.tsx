@@ -55,7 +55,7 @@ export default function Home(props: Props) {
                     ))}
                 </div>
             </main>
-            <footer> <a className={styles.footer} target="_blank" rel="noopener" href="https://www.linkedin.com/in/mihails-dudarevs/">Contact me</a></footer>
+            <footer> <a className={styles.footer} target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/mihails-dudarevs/">Contact me</a></footer>
         </div>
     )
 }
