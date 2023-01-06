@@ -46,7 +46,7 @@
 }
 
 .description {
-  margin: 4rem 0;
+  /*margin: 4rem 0;*/
   line-height: 1.5;
   font-size: 1.5rem;
 }
@@ -62,10 +62,10 @@
 
 .grid {
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 1000px;
 }
 .card {
   margin: 1rem;
@@ -78,13 +78,18 @@
   transition: color 0.15s ease, border-color 0.15s ease;
 
   max-width: 300px;
-  max-height: 300px;
-  overflow-x: hidden;
+  min-height: 350px;
+  flex-direction: column;
+  /*overflow-x: scroll;*/
+  display: flex;
 }
 
 .card:hover,
 .card:focus,
-.card:active {
+.card:active,
+.footer:hover,
+.footer:active
+{
   color: #0070f3;
   border-color: #0070f3;
 }
@@ -101,6 +106,7 @@
 }
 
 .logo {
+  padding: 0.5rem;
   height: 1em;
   margin-left: 0.5rem;
 }
@@ -132,4 +138,9 @@
 .occupation {
   font-size: 1.5rem;
   margin-bottom: 1vh;
+}
+
+.button {
+  top:0.5rem;
+  margin-top: auto;
 }

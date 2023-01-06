@@ -61,7 +61,6 @@ export async function getContributions() {
 
     // return {props: {name: data?.name, htmlUrl: data?.url, bio: data?.bio, contribution: contribution, avatarUrl:data.avatarUrl}}
     return {name: data?.name, htmlUrl: data?.url, bio: data?.bio, contribution: contribution, avatarUrl:data.avatarUrl}
-
 }
 export function stringToNumber(level:string):number{
        let numberLevel:number;

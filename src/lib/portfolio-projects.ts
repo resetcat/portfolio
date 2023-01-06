@@ -21,7 +21,7 @@ export async function getProjects() {
     const body = {
         "query": `{
   user(login: "${name}") {
-    repositories(orderBy: {field: UPDATED_AT, direction: DESC}, first: 4) {
+    repositories(orderBy: {field: PUSHED_AT, direction: DESC}, first: 100) {
       edges {
         node {
           object(expression: "main:portfolio.yml") {
@@ -49,11 +49,8 @@ export async function getProjects() {
         headers: headers
     })
     const data = await response.json();
-    // console.log(data.data?.user.repositories.edges[0].node.object.text)
-    // console.log(data.data?.user.repositories.edges[0].node.languages.edges[0].node.name)
     const projects = data.data?.user.repositories.edges;
-    // console.log(projects[0].node.languages.edges[0].node.name)
-    // return {projects: {name: data.}}
+
     return createProjects(projects);
 }
 
@@ -61,7 +58,6 @@ function createProjects(projects: any) {
     let portfolioProjects: PortfolioProjects[] = [];
     const temp: Badges[][] = projects.map((edge: { node: { languages: { edges: any; }; }; }) => edge.node.languages.edges);
     const languages = temp.map(subArray => subArray.map(obj => obj.node));
-    // console.log(languages)
     let image: string;
     for (let i = 0; i < projects.length; i++) {
         if (projects[i].node.object) {
@@ -70,7 +66,5 @@ function createProjects(projects: any) {
             portfolioProjects.push({name: text[0], description: text[1], smallImage: image, badges: languages[i]})
         }
     }
-    // console.log(portfolioProjects)
-    // console.log(transformedArray)
     return portfolioProjects;
 }
