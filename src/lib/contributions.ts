@@ -59,7 +59,6 @@ export async function getContributions() {
         contribution.push({date: day.date, level: stringToNumber(day.contributionLevel), count: day.contributionCount})
     }))
 
-    // return {props: {name: data?.name, htmlUrl: data?.url, bio: data?.bio, contribution: contribution, avatarUrl:data.avatarUrl}}
     return {name: data?.name, htmlUrl: data?.url, bio: data?.bio, contribution: contribution, avatarUrl:data.avatarUrl}
 }
 export function stringToNumber(level:string):number{

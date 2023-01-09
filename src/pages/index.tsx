@@ -47,7 +47,7 @@ export default function Home(props: Props) {
                             <Image src={project.smallImage}/>
                             <span>{project.description}</span>
                             <b className={styles.logo}>{project.badges.map((lang,index) => (
-                                <Tag key={index} color={lang.color}>{lang.name}</Tag>
+                                <Tag key={index} color={lang.node.color}>{lang.node.name}</Tag>
                             ))}</b>
                             {/*todo insert onclick modular*/}
                             <Button ghost block type="primary" className={styles.button}>See more</Button>
