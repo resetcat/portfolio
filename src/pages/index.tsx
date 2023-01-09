@@ -2,7 +2,7 @@ import styles from '../../styles/Home.module.css'
 import React from 'react';
 import {Image, Button, Tag} from 'antd';
 import {getContributions, Props} from "../lib/contributions";
-import ActivityCalendar from "react-activity-calendar";
+import ActivityCalendar, {CalendarData} from "react-activity-calendar";
 import {getProjects} from "../lib/portfolio-projects";
 
 export async function getServerSideProps() {
@@ -20,7 +20,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props: Props) {
-    // console.log(props.projects[3])
     return (
         <div className={styles.container}>
             <main className={styles.main}>
@@ -33,7 +32,7 @@ export default function Home(props: Props) {
                     <a>{props.name}</a>
                     <div className={styles.occupation}><a>{props.bio}</a></div>
                 </h1>
-                <ActivityCalendar color="#0070f3" data={props.contribution}></ActivityCalendar>
+                <ActivityCalendar color="#0070f3" data={props.contribution as CalendarData}></ActivityCalendar>
 
                 <p className={styles.description}>
                     My projects:
