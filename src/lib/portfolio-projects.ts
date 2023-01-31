@@ -6,6 +6,7 @@ export interface PortfolioProjects {
     description: string
     smallImage: string
     badges: Badges[]
+    url: string
 }
 
 export interface Badges {
@@ -40,6 +41,7 @@ export async function getProjects() {
               }
             }
           }
+          url
         }
       }
     }
@@ -60,13 +62,13 @@ export async function getProjects() {
 function createProjects(projects: any) {
     let portfolioProjects: PortfolioProjects[] = [];
     const temp: Badges[][] = projects.map((edge: { node: { languages: { edges: any; }; }; }) => edge.node.languages.edges);
-    // const languages = temp.map(subArray => subArray.map(obj => obj.node));
     let image: string;
     for (let i = 0; i < projects.length; i++) {
         if (projects[i].node.object) {
+            let url:string = projects[i].node.url;
             const text = projects[i].node.object.text.split('\n');
             image = `https://raw.githubusercontent.com/resetcat/${text[0]}/main/portfolio/image-small.png`;
-            portfolioProjects.push({name: text[0], description: text[1], smallImage: image, badges: temp[i]})
+            portfolioProjects.push({name: text[0], description: text[1], smallImage: image, badges: temp[i], url})
         }
     }
     return portfolioProjects;

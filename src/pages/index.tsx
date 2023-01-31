@@ -49,7 +49,8 @@ export default function Home(props: Props) {
                                 <Tag key={index} color={lang.node.color}>{lang.node.name}</Tag>
                             ))}</b>
                             {/*todo insert onclick modular*/}
-                            <Button ghost block type="primary" className={styles.button}>See more</Button>
+                            <Button ghost block type="primary" className={styles.button} onClick={() => window.open(project.url)}
+                            >See more</Button>
                         </div>
                     ))}
                 </div>
