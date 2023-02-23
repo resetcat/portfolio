@@ -14,6 +14,7 @@ export async function getServerSideProps() {
             bio: props.bio,
             contribution: props.contribution,
             htmlUrl: props.htmlUrl,
+            avatarUrl: props.avatarUrl,
             projects: rawProjects
         }
     }
@@ -25,7 +26,7 @@ export default function Home(props: Props) {
             <main className={styles.main}>
                 <h1 className={styles.title}>
                     <div><Image className={styles.image}
-                                src="https://media.licdn.com/dms/image/D4E03AQHt0ImgfP_yqg/profile-displayphoto-shrink_800_800/0/1667746379171?e=1676505600&v=beta&t=uBs1MFEhoYxaPGrKkBe0D4wKty39p_W3suXeMR48pJc"
+                                src={props.avatarUrl}
                                 width={200}
                     />
                     </div>

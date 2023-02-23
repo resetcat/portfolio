@@ -10,6 +10,7 @@ export interface Props {
     name: string
     htmlUrl: string
     bio: string
+    avatarUrl: string
     contribution: Contribution[]
     projects: PortfolioProjects[]
 }
